@@ -7,6 +7,7 @@
   },
   "dependencies": {
 	  "request": "*",
-	  "node-uuid": "*"
+	  "node-uuid": "*",
+	  "tinysong": "0.1.x"
   }
 }
