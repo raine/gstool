@@ -6,8 +6,8 @@
 	"start": "node main"
   },
   "dependencies": {
-	  "request": "*",
-	  "node-uuid": "*",
+	  "request": "2.x.x",
+	  "node-uuid": "1.4.x",
 	  "tinysong": "0.1.x"
   }
 }
