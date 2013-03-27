@@ -2,8 +2,6 @@ _       = require 'underscore'
 async   = require 'async'
 
 class Worker
-	started = []
-
 	constructor: (opts) ->
 		opts = _.defaults opts,
 			duration_ms: 1000
@@ -11,6 +9,8 @@ class Worker
 			defer_for_ms: 1000
 			debug: false
 			concurrency: 1
+
+		started = []
 
 		@queue = async.queue (job, done) ->
 			check = ->
