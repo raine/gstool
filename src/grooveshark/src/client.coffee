@@ -14,6 +14,9 @@ class Client
 		http.get 'http://grooveshark.com', (err, resp, body) =>
 			unless err
 				@sessionId = resp.headers['set-cookie'].toString().match(/PHPSESSID=([^;]*)/)[1]
+				if m = body.match /window.gsConfig = (\{.*?\});/
+					@config = JSON.parse m[1]
+
 				cb()
 			else
 				cb err
@@ -62,7 +65,7 @@ class Client
 			header:
 				client: 'htmlshark'
 				clientRevision: '20120312'
-				country: 'FI' # TODO: fix this
+				country: @config.country if @config
 				privacy: 0
 				session: @sessionId
 				uuid: @uuid
