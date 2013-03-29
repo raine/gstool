@@ -14,11 +14,16 @@ class Worker
 
 		@queue = async.queue (job, done) ->
 			check = ->
+				console.log 'check()', job if opts.debug
 				now = new Date()
 
 				count = 0
+				console.log 'started', started if opts.debug
+
 				for time in started
 					offset = now - time
+
+					console.log offset if opts.debug
 
 					if offset < opts.duration_ms
 						count += 1

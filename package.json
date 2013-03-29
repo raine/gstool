@@ -9,6 +9,11 @@
 	  "request": "2.x.x",
 	  "node-uuid": "1.4.x",
 	  "tinysong": "0.1.x",
-	  "spotify": "0.2.x"
+	  "spotify": "0.2.x",
+	  "async": "0.2.x",
+	  "underscore": "*",
+	  "commander": "*",
+	  "progress": "*",
+	  "nock": "*"
   }
 }

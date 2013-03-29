@@ -1,41 +1,48 @@
-_       = require 'underscore'
-spotify = require 'spotify'
-Worker  = require './worker'
+_              = require 'underscore'
+fs             = require 'fs'
+spotify        = require 'spotify'
+Worker         = require './worker'
+{EventEmitter} = require 'events'
 
 Spotify = ( ->
-	parseURIfromURL: (url) ->
-		if match = url.match /.*\/(track|album|artist)\/(.*)$/
-			{ type: match[1], id: match[2] }
+	parseTrack: (str) ->
+		m[2] if m = str.match /.*?track(\/|:)([a-zA-Z0-9]{22})/
 
-	getSongsFromURLs: (urls, cb) ->
-		ids = urls.map (url) => @parseURIfromURL url
-		@getSongsFromIDs ids, cb
+	parseTracksFromFile: (path) ->
+		lines  = ((fs.readFileSync path, 'utf8').split "\n").slice(0, -1)
+		_.compact lines.map (e) => @parseTrack e
 	
-	getSongsFromIDs: (ids, cb) ->
-		songs = []
+	getTracksFromIDs: (ids, cb) ->
+		emitter = new EventEmitter
+		songs   = []
 
-		lookup = (sObj, cb) ->
-			spotify.lookup type: sObj.type, id: sObj.id, (err, res) ->
+		lookup = (id, cb) ->
+			spotify.lookup type: 'track', id: id, (err, res) ->
 				if err
 					console.log 'spotify lookup failed', err
 					cb err # not handled in any way
 				else
-					songs.push
-						track: res.track.name
+					obj =
+						name: res.track.name
 						artists: _.pluck res.track.artists, 'name'
 
-					cb null
+					songs.push obj
+					cb null, obj
 
 		worker = new Worker
 			debug: false
 			duration_ms: 1000
 			defer_for_ms: 1000
-			max_jobs_per_duration: 1
+			max_jobs_per_duration: 10
 			task: lookup
 
-		worker.queue.push ids
+		worker.queue.push ids, (err, track) ->
+			emitter.emit 'track', track
+
 		worker.queue.drain = ->
-			cb null, songs
+			cb null, songs if cb
+
+		emitter
 )()
 
 module.exports = Spotify
