@@ -7,8 +7,8 @@ class User
 			cb null, @playlists
 		else
 			@client.request 'userGetPlaylists', userID: @profile.userID, (err, res) ->
-				@playlists = res unless err
-				cb err, res
+				@playlists = res.Playlists unless err
+				cb err, @playlists
 
 	createPlaylist: (name, description='', songs=[], cb) ->
 		@client.request 'createPlaylist',
