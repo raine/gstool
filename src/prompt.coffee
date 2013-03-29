@@ -74,3 +74,5 @@ exports.setup = (done) ->
 
 	, (err, opts) ->
 		done err, opts
+
+exports.program = program
