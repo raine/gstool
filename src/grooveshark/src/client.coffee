@@ -86,10 +86,10 @@ class Client
 		@request 'authenticateUser',
 			username: username
 			password: password
-		, (err, res) ->
+		, (err, res) =>
 			if not err and res.userID > 0
 				console.log 'logged in successfully'
-				cb null, res
+				cb null, new (require './user') this, res
 			else
 				cb 'login failed'
 
