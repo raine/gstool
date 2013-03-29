@@ -59,7 +59,7 @@ class Client
 			header:
 				client: 'htmlshark'
 				clientRevision: '20120312'
-				country: 'FI'
+				country: 'FI' # TODO: fix this
 				privacy: 0
 				session: @sessionId
 				uuid: @uuid
