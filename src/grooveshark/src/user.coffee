@@ -1,3 +1,5 @@
+Playlist = require './playlist'
+
 class User
 	constructor: (@client, data) ->
 		@profile = data
@@ -6,9 +8,14 @@ class User
 		if @playlists
 			cb null, @playlists
 		else
-			@client.request 'userGetPlaylists', userID: @profile.userID, (err, res) ->
-				@playlists = res.Playlists unless err
-				cb err, @playlists
+			@client.request 'userGetPlaylists', userID: @profile.userID, (err, res) =>
+				return cb err if err
+				@playlists = []
+
+				for data in res.Playlists
+					@playlists.push new Playlist @client, data
+
+				cb null, @playlists
 
 	createPlaylist: (name, description='', songs=[], cb) ->
 		@client.request 'createPlaylist',
