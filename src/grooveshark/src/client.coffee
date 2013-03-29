@@ -7,7 +7,6 @@ class Client
 
 	constructor: (arg) ->
 		if typeof arg is 'string'
-			console.log 'initializing with existing session'
 			@sessionId = arg
 
 	getSession: (cb) ->
@@ -24,7 +23,7 @@ class Client
 				@commToken = res
 				cb()
 			else
-				console.log "error: #{err}"
+				console.log "ERROR: #{err}" if @debug
 				cb err
 
 	createSecretKey: ->
@@ -43,14 +42,14 @@ class Client
 
 	request: (method, params, cb) ->
 		args = arguments
-		console.log "[request] method: #{method} params: #{JSON.stringify params}"
+		console.log "[request] method: #{method} params: #{JSON.stringify params}" if @debug
 
 		if not @sessionId?
 			return @getSession =>
 				@request.apply(this, args)
 
 		if not @commToken? and method isnt 'getCommunicationToken'
-			console.log 'no communication token, getting it'
+			console.log 'No communication token, getting it' if @debug
 			return @getCommToken =>
 				@request.apply(this, args)
 
@@ -88,7 +87,7 @@ class Client
 			password: password
 		, (err, res) =>
 			if not err and res.userID > 0
-				console.log 'logged in successfully'
+				console.log 'Logged in successfully' if @debug
 				cb null, new (require './user') this, res
 			else
 				cb 'login failed'
