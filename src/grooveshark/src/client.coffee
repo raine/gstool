@@ -76,7 +76,7 @@ class Client
 
 			if body and body.fault
 				cb body.fault.message
-			else if body and body.result
+			else if body and body.result?
 				cb null, body.result
 			else
 				cb error: 'something went wrong', res: resp
