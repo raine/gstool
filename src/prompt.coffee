@@ -10,6 +10,7 @@ program.option '-u, --username <username>', 'Grooveshark username'
 program.option '-p, --password <password>', 'Grooveshark password'
 program.option '-k, --tinysong-key <key>', 'Tinysong API key (tinysong.com/api)'
 program.option '-l, --playlist <name>', 'Name of the playlist'
+program.option '-v, --verbose', 'Verbose output'
 program.parse process.argv
 
 askTinysongKey = (cb) ->
