@@ -50,9 +50,9 @@ async.waterfall [
 
 			if playlist = _.find(playlists, (e) -> e.name is params.opts.playlist)
 				prompt.program.confirm """
-				Playlist \"#{params.opts.playlist}\" exists, do you want to *delete* it and create a new one but and the old songs?
-				Y: Delete and create a new playlist with the old songs
-				N: Create a new playlist with the same name """, (ok) ->
+				Playlist \"#{params.opts.playlist}\" exists, do you want to *delete* it and create a new one with the old songs?
+				Y: Delete and create a new playlist with the old songs (a bit like append)
+				N: Create a new playlist with the same name -- """, (ok) ->
 					params.appendToPlaylist = ok
 					params.playlist = playlist
 					cb null, params
