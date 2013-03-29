@@ -1,5 +1,6 @@
 async   = require 'async'
 program = require 'commander'
+_       = require 'underscore'
 
 Spotify = require './spotify'
 
