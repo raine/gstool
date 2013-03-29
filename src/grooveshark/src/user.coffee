@@ -18,4 +18,11 @@ class User
 		, (err, playlistId) ->
 			cb err, playlistId
 
+	deletePlaylist: (playlistID, cb) ->
+		@client.request 'deletePlaylist',
+			playlistID: playlistID
+			name: '' # This parameter doesn't seem to matter but has to be in the request
+		, (err, res) ->
+			cb err, res
+
 module.exports = User
