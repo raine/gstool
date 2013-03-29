@@ -32,7 +32,7 @@ async.waterfall [
 	prompt.setup
 
 	(opts, cb) ->
-		client = new gs.Client # TODO: initialize with old sessionId
+		client = new gs.Client # TODO: Initialize with old sessionId
 		client.debug = true if prompt.program.verbose
 		client.login opts.gsCreds.username, opts.gsCreds.password, (err, user) ->
 			unless err

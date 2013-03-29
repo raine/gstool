@@ -9,8 +9,9 @@ Spotify = ( ->
 		m[2] if m = str.match /.*?track(\/|:)([a-zA-Z0-9]{22})/
 
 	parseTracksFromFile: (path) ->
-		lines  = ((fs.readFileSync path, 'utf8').split "\n").slice(0, -1)
-		_.compact lines.map (e) => @parseTrack e
+		if fs.existsSync path
+			lines  = ((fs.readFileSync path, 'utf8').split "\n").slice(0, -1)
+			_.compact lines.map (e) => @parseTrack e
 	
 	getTracksFromIDs: (ids, cb) ->
 		emitter = new EventEmitter

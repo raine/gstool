@@ -51,8 +51,8 @@ exports.setup = (done) ->
 
 		tracks: (cb) ->
 			if program.input
-				# TODO: could use some error handling and a callback
 				tracks = Spotify.parseTracksFromFile program.input
+				cb 'File does not exist' unless tracks
 
 				if tracks.length > 0
 					console.log "Read #{tracks.length} track(s) from the file"
