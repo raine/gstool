@@ -24,10 +24,6 @@ fetchSongMetadata = (opts, done) ->
 				console.log "\nDone! #{songs.length} of #{opts.tracks.length} tracks found on Grooveshark"
 				done null, songs
 
-fatal = (err) ->
-	console.log "ERROR: #{err}" if err
-	process.exit (if err then 1 else 0)
-
 async.waterfall [
 	prompt.setup
 
@@ -89,5 +85,5 @@ async.waterfall [
 			createPlaylist params.opts.playlist, songIDs
 
 ], (err, params) ->
-	fatal err if err
-	process.exit()
+	console.log "ERROR: #{err}" if err
+	process.exit (if err then 1 else 0)
