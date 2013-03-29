@@ -20,8 +20,8 @@ Spotify = ( ->
 		lookup = (id, cb) ->
 			spotify.lookup type: 'track', id: id, (err, res) ->
 				if err
-					console.log 'spotify lookup failed', err
-					cb err # not handled in any way
+					console.log 'Spotify lookup failed', err
+					cb err # TODO: Not handled in any way
 				else
 					obj =
 						name: res.track.name
