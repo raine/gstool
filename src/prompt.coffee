@@ -57,15 +57,14 @@ exports.setup = (done) ->
 					console.log "Read #{tracks.length} track(s) from the file"
 					cb null, tracks
 				else
-					cb 'No tracks in file'
+					cb 'No tracks in the file'
 			else
 				askTracks (err, tracks) ->
 					if tracks.length > 0
 						console.log "Read #{tracks.length} track(s) from input"
 						cb null, tracks
 					else
-						console.log 'Unable to find tracks in the input'
-						cb 'No tracks in input'
+						cb 'No tracks in the input'
 
 		playlist: (cb) ->
 			if program.playlist
