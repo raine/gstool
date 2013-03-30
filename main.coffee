@@ -1,3 +1,5 @@
+#!/usr/bin/env coffee
+
 _           = require 'underscore'
 ProgressBar = require 'progress'
 async       = require 'async'
