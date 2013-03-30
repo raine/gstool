@@ -1,6 +1,6 @@
 _              = require 'underscore'
 fs             = require 'fs'
-spotify        = require 'spotify'
+spotify        = require '../lib/spotify'
 Worker         = require './worker'
 {EventEmitter} = require 'events'
 
