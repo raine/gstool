@@ -7,6 +7,8 @@ A brief how-to for the time being:
 
 	git clone git://github.com/raneksi/gs-tool.git && cd gs-tool
 	npm install
+	git submodule init
+	git submodule update
 	./main.coffee -h
 	
 ---
