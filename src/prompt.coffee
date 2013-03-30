@@ -5,12 +5,12 @@ _       = require 'underscore'
 Spotify = require './spotify'
 
 program.version '0.0.1'
-program.option '-i, --input <file>', 'Read spotify playlist from a file'
-program.option '-u, --username <username>', 'Grooveshark username'
-program.option '-p, --password <password>', 'Grooveshark password'
-program.option '-k, --tinysong-key <key>', 'Tinysong API key (tinysong.com/api)'
-program.option '-l, --playlist <name>', 'Name of the playlist'
-program.option '-v, --verbose', 'Verbose output'
+program.option '-i, --input <file>', 'read spotify playlist from a file'
+program.option '-u, --username <username>', 'grooveshark username'
+program.option '-p, --password <password>', 'grooveshark password'
+program.option '-k, --tinysong-key <key>', 'tinysong API key (tinysong.com/api)'
+program.option '-l, --playlist <name>', 'name of the playlist'
+program.option '-v, --verbose', 'verbose output'
 program.parse process.argv
 
 askTinysongKey = (cb) ->
