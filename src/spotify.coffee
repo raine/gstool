@@ -13,9 +13,8 @@ Spotify = ( ->
 			lines  = ((fs.readFileSync path, 'utf8').split "\n").slice(0, -1)
 			_.compact lines.map (e) => @parseTrack e
 	
-	getTracksFromIDs: (ids, cb) ->
+	getTracksFromIDs: (ids) ->
 		emitter = new EventEmitter
-		songs   = []
 
 		lookup = (id, cb) ->
 			spotify.lookup type: 'track', id: id, (err, res) ->
@@ -23,12 +22,9 @@ Spotify = ( ->
 					console.log 'Spotify lookup failed', err
 					cb err # TODO: Not handled in any way
 				else
-					track =
+					cb null,
 						name: res.track.name
 						artists: _.pluck res.track.artists, 'name'
-
-					songs.push track
-					cb null, track
 
 		worker = new Worker
 			debug: false
@@ -39,9 +35,6 @@ Spotify = ( ->
 
 		worker.queue.push ids, (err, track) ->
 			emitter.emit 'track', track
-
-		worker.queue.drain = ->
-			cb null, songs if cb
 
 		emitter
 )()
