@@ -23,12 +23,12 @@ Spotify = ( ->
 					console.log 'Spotify lookup failed', err
 					cb err # TODO: Not handled in any way
 				else
-					obj =
+					track =
 						name: res.track.name
 						artists: _.pluck res.track.artists, 'name'
 
-					songs.push obj
-					cb null, obj
+					songs.push track
+					cb null, track
 
 		worker = new Worker
 			debug: false
