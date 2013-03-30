@@ -30,7 +30,7 @@ async.waterfall [
 	(opts, cb) ->
 		client = new gs.Client # TODO: Initialize with old sessionId
 		client.debug = true if prompt.program.verbose
-		client.login opts.gsCreds.username, opts.gsCreds.password, (err, user) ->
+		client.login opts.username, opts.password, (err, user) ->
 			unless err
 				console.log 'Authenticated with Grooveshark successfully'
 				cb null, opts: opts, user: user

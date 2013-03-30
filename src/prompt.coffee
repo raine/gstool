@@ -17,14 +17,13 @@ askTinysongKey = (cb) ->
 	program.prompt 'Enter Tinysong API key: ', (input) ->
 		cb null, input
 
-askCredentials = (cb) ->
-	s = 'Enter Grooveshark'
+s = 'Enter Grooveshark'
 
-	async.series [
-		(cb) -> program.prompt   "#{s} username: ", (input) -> cb null, input
-		(cb) -> program.password "#{s} password: ", (input) -> cb null, input
-	], (err, result) ->
-		cb null, username: result[0], password: result[1]
+askUsername = (cb) ->
+	program.prompt "#{s} username: ", (input) -> cb null, input
+
+askPassword = (cb) ->
+	program.password "#{s} password: ", (input) -> cb null, input
 
 askTracks = (cb) ->
 	program.prompt 'Copy and paste tracks from spotify (enter an empty line after done):', (input) ->
@@ -43,11 +42,17 @@ exports.setup = (done) ->
 			else
 				askTinysongKey cb
 
-		gsCreds: (cb) ->
-			if program.username and program.password
-				cb null, username: program.username, password: program.password
+		username: (cb) ->
+			if program.username
+				cb null, program.username
 			else
-				askCredentials cb
+				askUsername cb
+
+		password: (cb) ->
+			if typeof program.password is 'string'
+				cb null, program.password
+			else
+				askPassword cb
 
 		tracks: (cb) ->
 			if program.input
