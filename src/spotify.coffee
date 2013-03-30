@@ -19,8 +19,7 @@ Spotify = ( ->
 		lookup = (id, cb) ->
 			spotify.lookup type: 'track', id: id, (err, res) ->
 				if err
-					console.log 'Spotify lookup failed', err
-					cb err # TODO: Not handled in any way
+					cb err
 				else
 					cb null,
 						name: res.track.name
@@ -34,7 +33,10 @@ Spotify = ( ->
 			task: lookup
 
 		worker.queue.push ids, (err, track) ->
-			emitter.emit 'track', track
+			if err
+				throw "ERROR: Request to Spotify failed"
+			else
+				emitter.emit 'track', track
 
 		emitter
 )()
