@@ -9,7 +9,7 @@ class TinysongWorker
 			debug: false
 			duration_ms: 1000
 			defer_for_ms: 1000
-			max_jobs_per_duration: 5
+			max_jobs_per_duration: 1
 			task: @lookup
 
 		@songs = []
