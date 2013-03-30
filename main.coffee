@@ -11,7 +11,7 @@ fetchSongMetadata = (opts, done) ->
 	tinysong = new Tinysong opts.tinysongKey
 	spotify  = Spotify.getTracksFromIDs opts.tracks
 
-	progress = new ProgressBar 'Fetching song metadata... [:bar] :percent :current/:total',
+	progress = new ProgressBar 'Fetching track metadata... [:bar] :percent :current/:total',
 		total: opts.tracks.length
 		width: 30
 
@@ -46,8 +46,8 @@ async.waterfall [
 
 			if playlist = _.find(playlists, (e) -> e.name is params.opts.playlist)
 				prompt.program.confirm """
-				Playlist \"#{params.opts.playlist}\" exists, do you want to *delete* it and create a new one with the old songs?
-				Y: Delete and create a new playlist with the old songs (a bit like append)
+				Playlist \"#{params.opts.playlist}\" exists, do you want to *delete* it and create a new one with the old tracks?
+				Y: Delete and create a new playlist with the old tracks (a bit like append)
 				N: Create a new playlist with the same name -- """, (ok) ->
 					params.appendToPlaylist = ok
 					params.playlist = playlist
@@ -62,7 +62,7 @@ async.waterfall [
 				params.songs = songs
 				cb null, params
 			else
-				cb 'No songs found'
+				cb 'No tracks found'
 
 	(params, cb) ->
 		songIDs = params.songs.map (s) -> s.SongID
