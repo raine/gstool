@@ -10,6 +10,8 @@ class Client
 		if typeof arg is 'string'
 			@sessionId = arg
 
+		@uuid = uuid.v4()
+
 	getSession: (cb) ->
 		http.get 'http://grooveshark.com', (err, resp, body) =>
 			unless err
