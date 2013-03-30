@@ -71,7 +71,7 @@ async.waterfall [
 			params.user.createPlaylist name, '', ids, (err, playlistId) ->
 				return cb err if err
 
-				console.log "Created a new playlist: #{gs.Playlist.getURL name, playlistId}"
+				console.log "Created a new playlist with #{ids.length} tracks: #{gs.Playlist.getURL name, playlistId}"
 				cb null, params
 
 		if params.appendToPlaylist
