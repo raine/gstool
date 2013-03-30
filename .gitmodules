@@ -1,3 +1,0 @@
-[submodule "lib/spotify"]
-	path = lib/spotify
-	url = git@github.com:raneksi/node-spotify.git
