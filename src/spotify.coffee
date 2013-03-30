@@ -35,6 +35,7 @@ Spotify = ( ->
 		worker.queue.push ids, (err, track) ->
 			if err
 				# TODO: should it recover from a failed request? perhaps by skipping the track
+				console.log err
 				throw "ERROR: Request to Spotify failed"
 			else
 				emitter.emit 'track', track
