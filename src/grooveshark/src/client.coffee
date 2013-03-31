@@ -39,7 +39,7 @@ class Client
 
 	createToken: (method) ->
 		rand = crypto.pseudoRandomBytes(3).toString 'hex'
-		pwd  = 'breakfastBurritos'
+		pwd  = 'greenPlants'
 		pass = "#{method}:#{@commToken}:#{pwd}:#{rand}"
 		hash = crypto.createHash 'sha1'
 		hash.update pass
@@ -66,7 +66,7 @@ class Client
 			parameters: params
 			header:
 				client: 'htmlshark'
-				clientRevision: '20120312'
+				clientRevision: '20120830'
 				country: @config.country if @config
 				privacy: 0
 				session: @sessionId
