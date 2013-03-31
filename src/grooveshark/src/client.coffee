@@ -100,4 +100,16 @@ class Client
 			else
 				cb 'login failed'
 
+	searchSongs: (query, cb) ->
+		@request 'getResultsFromSearch',
+			type: 'Songs'
+			query: query
+			guts: 0
+			ppOverride: false
+		, (err, res) ->
+			unless err
+				cb null, res.result
+			else
+				cb err
+
 module.exports = Client
