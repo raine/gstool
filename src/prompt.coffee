@@ -8,14 +8,9 @@ program.version '0.0.1'
 program.option '-i, --input <file>', 'read spotify playlist from a file'
 program.option '-u, --username <username>', 'grooveshark username'
 program.option '-p, --password <password>', 'grooveshark password'
-program.option '-k, --tinysong-key <key>', 'tinysong API key (tinysong.com/api)'
 program.option '-l, --playlist <name>', 'name of the playlist'
 program.option '-v, --verbose', 'verbose output'
 program.parse process.argv
-
-askTinysongKey = (cb) ->
-	program.prompt 'Enter Tinysong API key: ', (input) ->
-		cb null, input
 
 s = 'Enter Grooveshark'
 
@@ -36,12 +31,6 @@ askPlaylist = (cb) ->
 	
 exports.setup = (done) ->
 	async.series
-		tinysongKey: (cb) ->
-			if program.tinysongKey
-				cb null, program.tinysongKey
-			else
-				askTinysongKey cb
-
 		username: (cb) ->
 			if program.username
 				cb null, program.username
