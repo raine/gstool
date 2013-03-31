@@ -24,7 +24,7 @@ fetchSongMetadata = (params, done) ->
 			progress.tick()
 
 			if gsWorker.songs.length is tracks.length
-				songs = gsWorker.songs.filter (e) -> e?
+				songs = _.compact gsWorker.songs
 				console.log "\nDone! #{songs.length} of #{tracks.length} tracks found on Grooveshark"
 				done null, songs
 
