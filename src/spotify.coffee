@@ -29,7 +29,7 @@ Spotify = ( ->
 			debug: false
 			duration_ms: 1000
 			defer_for_ms: 1000
-			max_jobs_per_duration: 10
+			max_jobs_per_duration: 1
 			task: lookup
 
 		worker.queue.push ids, (err, track) ->
