@@ -6,26 +6,24 @@ async       = require 'async'
 
 gs          = require './src/grooveshark/grooveshark'
 Spotify     = require './src/spotify'
+Tinysong    = require './src/tinysong'
 prompt      = require './src/prompt'
-GSWorker    = require './src/gsworker'
 
-fetchSongMetadata = (params, done) ->
-	tracks = params.opts.tracks
-
-	gsWorker = new GSWorker params.user.client
-	spotify  = Spotify.getTracksFromIDs tracks
+fetchSongMetadata = (opts, done) ->
+	tinysong = new Tinysong opts.tinysongKey
+	spotify  = Spotify.getTracksFromIDs opts.tracks
 
 	progress = new ProgressBar 'Fetching track metadata... [:bar] :percent :current/:total',
-		total: tracks.length
+		total: opts.tracks.length
 		width: 30
 
 	spotify.on 'track', (track) ->
-		gsWorker.push "#{track.artists[0]} #{track.name}", (err, res) ->
+		tinysong.push "#{track.artists[0]} #{track.name}", (err, res) ->
 			progress.tick()
 
-			if gsWorker.songs.length is tracks.length
-				songs = _.compact gsWorker.songs
-				console.log "\nDone! #{songs.length} of #{tracks.length} tracks found on Grooveshark"
+			if tinysong.songs.length is opts.tracks.length
+				songs = _.compact tinysong.songs
+				console.log "\nDone! #{songs.length} of #{opts.tracks.length} tracks found on Grooveshark"
 				done null, songs
 
 async.waterfall [
@@ -61,7 +59,7 @@ async.waterfall [
 
 	# Get song metadata
 	(params, cb) ->
-		fetchSongMetadata params, (err, songs) ->
+		fetchSongMetadata params.opts, (err, songs) ->
 			if songs.length > 0
 				params.songs = songs
 				cb null, params
