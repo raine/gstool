@@ -21,7 +21,7 @@ class User
 		@client.request 'createPlaylist',
 			playlistName: name
 			playlistAbout: description
-			songIDs: songs.map (id) -> parseInt id
+			songIDs: songs
 		, (err, playlistId) ->
 			cb err, playlistId
 

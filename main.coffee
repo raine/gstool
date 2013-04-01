@@ -80,7 +80,7 @@ async.waterfall [
 
 		if params.appendToPlaylist
 			params.playlist.getSongs (err, songs) ->
-				oldIDs      = songs.map (s) -> parseInt s.SongID
+				oldIDs      = songs.map (s) -> s.SongID
 				combinedIDs = _.union oldIDs, songIDs
 
 				params.playlist.delete (err, res) ->
