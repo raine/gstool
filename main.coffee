@@ -3,8 +3,8 @@
 _           = require 'underscore'
 ProgressBar = require 'progress'
 async       = require 'async'
+gs          = require 'grooveshark'
 
-gs          = require './src/grooveshark/grooveshark'
 Spotify     = require './src/spotify'
 Tinysong    = require './src/tinysong'
 prompt      = require './src/prompt'
