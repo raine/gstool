@@ -1,8 +1,7 @@
 {
   "name": "gstool",
-  "description": "A command-line tool for moving Spotify playlists to Grooveshark",
+  "description": "A command-line tool for sending lists of Spotify songs to Grooveshark",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
 	"start": "node main"
   },
