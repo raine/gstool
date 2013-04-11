@@ -1,3 +1,3 @@
 #!/usr/bin/env node
-var gstool = require("./lib/main");
+var gstool = require("./lib/gstool");
 gstool.run();
