@@ -7,10 +7,10 @@ init:
 	npm install
 
 clean:
-	rm -rf lib/
+	rm -rf lib/*.js
 
 build:
-	./node_modules/.bin/coffee -o lib/ -c src/
+	./node_modules/.bin/coffee -c lib/
 
 dist: clean init build
 

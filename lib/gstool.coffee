@@ -5,9 +5,9 @@ ProgressBar = require 'progress'
 async       = require 'async'
 gs          = require 'gs-more'
 
-Spotify     = require './src/spotify'
-Tinysong    = require './src/tinysong'
-prompt      = require './src/prompt'
+Spotify     = require './spotify'
+Tinysong    = require './tinysong'
+prompt      = require './prompt'
 
 fetchSongMetadata = (opts, done) ->
 	tinysong = new Tinysong opts.tinysongKey
