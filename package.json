@@ -1,11 +1,12 @@
 {
   "name": "gstool",
   "description": "A command-line tool for sending lists of Spotify songs to Grooveshark",
-  "version": "0.0.1",
-  "scripts": {
-	"start": "node main"
-  },
+  "version": "0.1.0",
+  "author": "Raine Virta <raine.virta@gmail.com>",
+  "keywords": ["grooveshark", "music", "spotify"],
+  "engines": { "node": ">= 0.8.0" },
   "dependencies": {
+	  "coffee-script": "1.6.x",
 	  "request": "2.x.x",
 	  "node-uuid": "1.4.x",
 	  "tinysong": "0.1.x",
