@@ -1,11 +1,11 @@
-gs-tool
+gstool
 ========
 
 A command-line tool for moving Spotify playlists to Grooveshark.
 
 A brief how-to for the time being:
 
-	git clone git://github.com/raneksi/gs-tool.git && cd gs-tool
+	git clone git://github.com/raneksi/gstool.git && cd gstool
 	npm install
 	./main.coffee -h
 	
