@@ -1,4 +1,3 @@
 #!/usr/bin/env node
-require("coffee-script");
-var gstool = require("./main");
+var gstool = require("./lib/main");
 gstool.run();
