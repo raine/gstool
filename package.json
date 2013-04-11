@@ -15,5 +15,6 @@
 	  "progress": "0.1.x",
 	  "spotify": "git://github.com/raneksi/node-spotify.git",
 	  "gs-more": "0.0.x"
-  }
+  },
+  "bin": "./run.js"
 }
