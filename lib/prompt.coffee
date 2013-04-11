@@ -14,6 +14,7 @@ program.option '-v, --verbose', 'verbose output'
 program.parse process.argv
 
 askTinysongKey = (cb) ->
+	console.log 'Tinysong API key is required, get one here: http://tinysong.com/api'
 	program.prompt 'Enter Tinysong API key: ', (input) ->
 		cb null, input
 
