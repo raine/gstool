@@ -17,5 +17,8 @@
 	  "spotify": "git://github.com/raneksi/node-spotify.git",
 	  "gs-more": "0.0.x"
   },
+  "devDependencies": {
+	  "coffee-script": "1.6.x"
+  },
   "bin": "./run.js"
 }
