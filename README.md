@@ -3,6 +3,9 @@ gstool
 
 A command-line tool for moving Spotify playlists to Grooveshark.
 
+An API key for Tinysong.com is required. You can get one
+[here](http://www.tinysong.com/api) emailed to you instantly.
+
 ---
 
 ### Installation
@@ -35,3 +38,13 @@ A command-line tool for moving Spotify playlists to Grooveshark.
 	-k, --tinysong-key <key>   tinysong API key (tinysong.com/api)
 	-l, --playlist <name>      name of the playlist
 	-v, --verbose              verbose output
+
+### Tinysong rate-limiting
+
+Tinysong API is used to find Grooveshark equivalents for the tracks. As
+it happens, Tinysong is pretty aggressive in its rate-limiting, allowing
+around a few hundred calls per day. You can email support@grooveshark.com and
+they will most likely increase the limit for your API key.
+
+This is very inconvenient and if I learn about a workaround I will look into
+it.
